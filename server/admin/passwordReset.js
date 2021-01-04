@@ -36,7 +36,7 @@ router.route('/password-reset').post((req, res, next) => {
           toAddresses: [req.body.email],
           templateName: 'PasswordResetToken',
           home_link: 'https://main.d3ieky02gu560k.amplifyapp.com/',
-          recovery_link: 'http://localhost:3000/admin/reset/' + token + '/' + req.body.email,
+          recovery_link: 'https://main.d3ieky02gu560k.amplifyapp.com//admin/reset/' + token + '/' + req.body.email,
         };
 
         ses.sendTemplatedEmail(data);

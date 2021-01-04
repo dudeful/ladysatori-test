@@ -109,12 +109,11 @@ router.route('/oauth2-google/:original_url').get((req, res, next) => {
 
 router.route('/google/redirect').get(
   passport.authenticate('google', {
-    failureRedirect: 'https://main.d3ieky02gu560k.amplifyapp.com/login',
+    failureRedirect: 'https://master.d3ieky02gu560k.amplifyapp.com/login',
   }),
   (req, res) => {
     const user = req.user;
     const original_url = req.query.state;
-
     ddb
       .getUser({ key: { googleID: { S: user.Item.googleID.S } }, table: 'users_google' })
       .then((user) => {
@@ -135,15 +134,12 @@ router.route('/google/redirect').get(
 
         jwt.sign({ ciphertext }, process.env.JWT_SECRET, { expiresIn: '8h' }, (err, token) => {
           if (err) throw err;
-          // req.session.token = token;
-          // console.log(req.session);
-          // res.redirect('https://main.d3ieky02gu560k.amplifyapp.com/SocialAuth/' + original_url + '/' + token);
-          res.redirect('http://localhost:3000/SocialAuth/' + original_url + '/' + token);
+          res.redirect('https://master.d3ieky02gu560k.amplifyapp.com/SocialAuth/' + original_url + '/' + token);
         });
       })
       .catch((err) => {
         console.log(err);
-        res.redirect('https://main.d3ieky02gu560k.amplifyapp.com/error400');
+        res.redirect('https://master.d3ieky02gu560k.amplifyapp.com/error400');
       });
   }
 );
@@ -157,7 +153,7 @@ router.route('/oauth2-facebook/:original_url').get((req, res, next) => {
 
 router.route('/facebook/redirect').get(
   passport.authenticate('facebook', {
-    failureRedirect: 'https://main.d3ieky02gu560k.amplifyapp.com/login',
+    failureRedirect: 'https://master.d3ieky02gu560k.amplifyapp.com/login',
   }),
   (req, res) => {
     const user = req.user;
@@ -181,13 +177,12 @@ router.route('/facebook/redirect').get(
 
         jwt.sign({ ciphertext }, process.env.JWT_SECRET, { expiresIn: '8h' }, (err, token) => {
           if (err) throw err;
-          // res.redirect('https://main.d3ieky02gu560k.amplifyapp.com/SocialAuth/' + original_url + '/' + token);
-          res.redirect('http://localhost:3000/SocialAuth/' + original_url + '/' + token);
+          res.redirect('https://master.d3ieky02gu560k.amplifyapp.com//SocialAuth/' + original_url + '/' + token);
         });
       })
       .catch((err) => {
         console.log(err);
-        res.redirect('https://main.d3ieky02gu560k.amplifyapp.com/error400');
+        res.redirect('https://master.d3ieky02gu560k.amplifyapp.com/error400');
       });
   }
 );
@@ -203,7 +198,7 @@ router.route('/oauth2-twitter/:original_url').get((req, res, next) => {
 
 router.route('/twitter/redirect').get(
   passport.authenticate('twitter', {
-    failureRedirect: 'https://main.d3ieky02gu560k.amplifyapp.com/login',
+    failureRedirect: 'https://master.d3ieky02gu560k.amplifyapp.com/login',
   }),
   (req, res) => {
     const user = req.user;
@@ -226,13 +221,12 @@ router.route('/twitter/redirect').get(
 
         jwt.sign({ ciphertext }, process.env.JWT_SECRET, { expiresIn: '8h' }, (err, token) => {
           if (err) throw err;
-          // res.redirect('https://main.d3ieky02gu560k.amplifyapp.com/SocialAuth/' + original_url + '/' + token);
-          res.redirect('http://localhost:3000/SocialAuth/' + original_url + '/' + token);
+          res.redirect('https://master.d3ieky02gu560k.amplifyapp.com//SocialAuth/' + original_url + '/' + token);
         });
       })
       .catch((err) => {
         console.log(err);
-        res.redirect('https://main.d3ieky02gu560k.amplifyapp.com/error400');
+        res.redirect('https://master.d3ieky02gu560k.amplifyapp.com/error400');
       });
   }
 );

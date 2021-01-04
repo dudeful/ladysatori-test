@@ -125,7 +125,7 @@ router.route('/password-reset').post((req, res, next) => {
           toAddresses: [req.body.email],
           templateName: 'PasswordResetToken',
           home_link: 'https://main.d3ieky02gu560k.amplifyapp.com/',
-          recovery_link: 'http://localhost:3000/users/reset/' + token + '/' + req.body.email,
+          recovery_link: 'https://main.d3ieky02gu560k.amplifyapp.com//users/reset/' + token + '/' + req.body.email,
         };
 
         ses.sendTemplatedEmail(data);
@@ -163,59 +163,87 @@ router.route('/reset/:token/:email').patch((req, res) => {
       function (done) {
         const tokenHash = crypto.createHash('sha512').update(req.params.token).digest('hex');
 
-        const data = {
-          table: 'users_email',
-          email: req.body.user.email,
-          newPassword: req.body.newPassword.password,
-          resetPasswordToken: tokenHash,
-        };
+        User.findOne({ resetPasswordToken: tokenHash, resetPasswordExpires: { $gt: Date.now() } }, (err, user) => {
+          if (!user) {
+            return res.json({ user: false });
+          }
 
-        //Create salt & hash
-        bcrypt.hash(data.newPassword, saltRounds, (err, hash) => {
-          if (err) throw err;
-          data.newPassword = hash;
+          user.password = req.body.newPassword.password;
+          user.resetPasswordToken = undefined;
+          user.resetPasswordExpires = undefined;
+          user.lastPasswordReset = Date.now();
 
-          ddb
-            .resetPassword(data)
-            .promise()
-            .then(() => {
-              const payload = {
-                authMethod: 'Email',
-                fName: req.body.user.fName,
-                lName: req.body.user.lName,
-                email: req.body.user.email,
-              };
-
-              // Encrypt
-              const ciphertext = CryptoJS.AES.encrypt(
-                JSON.stringify(payload),
-                process.env.JWT_PAYLOAD_ENCRYPTION_KEY
-              ).toString();
-
-              jwt.sign({ ciphertext }, process.env.JWT_SECRET, { expiresIn: '12h' }, (err, token) => {
-                if (err) throw err;
-                done(err, token);
-              });
-            })
-            .catch((err) => console.log(err));
+          //Create salt & hash
+          bcrypt.hash(user.password, saltRounds, (err, hash) => {
+            if (err) throw err;
+            user.password = hash;
+            user.save().then((user, err) => {
+              jwt.sign(
+                {
+                  id: user._id,
+                  fName: user.fName,
+                  lName: user.lName,
+                  email: user.email,
+                },
+                process.env.JWT_SECRET,
+                { expiresIn: '1d' },
+                (err, token) => {
+                  if (err) throw err;
+                  done(err, token, user);
+                }
+              );
+            });
+          });
         });
       },
-      function (token, done) {
-        const data = {
-          toAddresses: [req.body.user.email],
-          templateName: 'PasswordResetDone',
-          home_link: 'https://main.d3ieky02gu560k.amplifyapp.com/',
-          login_page_link: 'https://main.d3ieky02gu560k.amplifyapp.com/login',
+      function (token, user, done) {
+        let options = {
+          method: 'POST',
+          hostname: 'api.sendgrid.com',
+          port: null,
+          path: '/v3/mail/send',
+          headers: {
+            authorization: `Bearer ${process.env.SENDGRID_API_KEY}`,
+            'content-type': 'application/json',
+          },
         };
 
-        ses.sendTemplatedEmail(data);
+        let request = http.request(options, function (res) {
+          let chunks = [];
 
-        res.json({ token, isAdmin: false });
-        done(null, done);
+          res.on('data', function (chunk) {
+            chunks.push(chunk);
+          });
+
+          res.on('end', function () {
+            let body = Buffer.concat(chunks);
+          });
+        });
+
+        request.write(
+          JSON.stringify({
+            personalizations: [
+              {
+                to: [{ email: user.email }],
+                dynamic_template_data: {
+                  login_page_link: 'https://main.d3ieky02gu560k.amplifyapp.com/login',
+                  home_link: 'https://main.d3ieky02gu560k.amplifyapp.com/',
+                },
+              },
+            ],
+            from: { email: 'rellumnyar@gmail.com', name: 'Lady Satori' },
+            reply_to: { email: 'rellumnyar@gmail.com', name: 'John Doe' },
+            template_id: process.env.EMAIL_PASSWORD_RESET_CONFIRMATION,
+          })
+        );
+        request.end();
+
+        res.json({ token });
       },
     ],
     function (err) {
-      if (err) return res.json({ err });
+      if (err) return next(err);
+      res.json({ err });
     }
   );
 });

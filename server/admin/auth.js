@@ -91,7 +91,6 @@ router.route('/google/redirect').get(
   }),
   (req, res) => {
     const user = req.user;
-    console.log(user);
     const original_url = req.query.state;
 
     ddb
@@ -117,7 +116,7 @@ router.route('/google/redirect').get(
           // req.session.token = token;
           // console.log(req.session);
           // res.redirect('https://main.d3ieky02gu560k.amplifyapp.com/SocialAuth/' + original_url + '/' + token);
-          res.redirect('http://localhost:3000/SocialAuth/' + original_url + '/' + token);
+          res.redirect('https://main.d3ieky02gu560k.amplifyapp.com//SocialAuth/' + original_url + '/' + token);
         });
       })
       .catch((err) => {
