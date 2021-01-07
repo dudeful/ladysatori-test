@@ -8,7 +8,7 @@
 node_modules
 
 # key-pair cloudfront
-pk-APKAIVYETTVTPD2LLQVQ.pem
-rsa-APKAIVYETTVTPD2LLQVQ.pem
+pk-APKAIFJGDJDJJXEJNLNA.pem
+rsa-APKAIFJGDJDJJXEJNLNA.pem
 
 serverless.yml

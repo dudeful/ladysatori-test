@@ -26,9 +26,10 @@ app.use(passport.session());
 app.use('/test', require('./test'));
 app.use('/users', require('./users'));
 app.use('/auth', require('./auth'));
+app.use('/blog', require('./admin/blog'));
 app.use('/admin/reset', require('./admin/passwordReset'));
 app.use('/admin/auth', require('./admin/auth'));
-app.use('/blog', require('./admin/blog'));
+app.use('/course', cors({ origin: 'http://localhost:3000', credentials: true }), require('./admin/course'));
 
 app.listen(port, () => {
   console.log(`just code`);
