@@ -1,10 +1,14 @@
-import './styles/App.css';
-import Course from './components/Course';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import ClassRoom from './components/Course/ClassRoom';
 
 const App = () => {
   return (
-    <div className='App'>
-      <Course />
+    <div>
+      <Router>
+        <Switch>
+          <Route path='/' component={ClassRoom} exact />
+        </Switch>
+      </Router>
     </div>
   );
 };

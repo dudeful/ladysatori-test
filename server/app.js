@@ -29,7 +29,11 @@ app.use('/auth', require('./auth'));
 app.use('/blog', require('./admin/blog'));
 app.use('/admin/reset', require('./admin/passwordReset'));
 app.use('/admin/auth', require('./admin/auth'));
-app.use('/course', cors({ origin: 'http://localhost:3000', credentials: true }), require('./admin/course'));
+app.use(
+  '/course',
+  cors({ origin: ['http://localhost:3000', 'https://master.d3kw4pqdide09j.amplifyapp.com'], credentials: true }),
+  require('./admin/course')
+);
 
 app.listen(port, () => {
   console.log(`just code`);
