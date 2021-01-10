@@ -110,6 +110,19 @@ const HorizontalNav = () => {
           </div>
         </div>
       </div>
+      <div className='hamburguer-menu col p-0'>
+        <button
+          className='navbar-toggler border-0 m-0 pr-2 pl-2'
+          type='button'
+          data-toggle='collapse'
+          data-target='#navbarVNavDropdown'
+          aria-controls='navbarVNavDropdown'
+          aria-expanded='false'
+          aria-label='Toggle navigation'
+        >
+          <img src='/images/Admin/hamburguer-menu.png' alt='...' />
+        </button>
+      </div>
     </div>
   );
 };

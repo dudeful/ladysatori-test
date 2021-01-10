@@ -10,7 +10,7 @@ const ClassLessonsNav = (props) => {
               onClick={() => props.activeLesson(lesson + random)}
               key={lesson}
               id={lesson + random}
-              className='nav-link lesson'
+              className={'nav-link lesson ' + props.isActive}
               href='#0'
             >
               {lesson}

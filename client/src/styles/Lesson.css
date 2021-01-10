@@ -1,0 +1,70 @@
+.react_player {
+  width: 100%;
+  height: 70vh;
+}
+@media only screen and (max-width: 1800px) {
+  .react_player {
+    height: 65vh;
+  }
+}
+@media only screen and (max-width: 1600px) {
+  .react_player {
+    height: 70vh;
+  }
+}
+@media only screen and (max-width: 1025px) {
+  .react_player {
+    height: 35vh;
+  }
+}
+@media only screen and (max-width: 993px) {
+  .react_player {
+    height: 35vh;
+  }
+}
+@media only screen and (max-width: 903px) {
+  .react_player {
+    height: 53vh;
+  }
+}
+@media only screen and (max-width: 769px) {
+  .react_player {
+    height: 45vh;
+  }
+}
+@media only screen and (max-width: 700px) {
+  .react_player {
+    height: 55vh;
+  }
+}
+@media only screen and (max-width: 630px) {
+  .react_player {
+    height: 50vh;
+  }
+}
+@media only screen and (max-width: 580px) {
+  .react_player {
+    height: 45vh;
+  }
+}
+@media only screen and (max-width: 420px) {
+  .react_player {
+    height: 33vh;
+  }
+}
+
+/* ----------------RESOURCES------------------- */
+
+.lesson_resources {
+  padding: 30px 25px;
+}
+
+.lesson_resources .nav-link {
+  text-decoration: none;
+  color: #373a409a;
+  font-weight: 600;
+}
+
+.lesson_resources .tab-content {
+  padding: 30px 60px;
+}
