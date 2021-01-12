@@ -1,4 +1,4 @@
-import '../../styles/ClassRoom.css';
+import '../../../styles/ClassRoom.css';
 import { Link } from 'react-router-dom';
 
 const HorizontalNav = () => {

@@ -1,6 +1,6 @@
 import '../../styles/Lesson.css';
 import ReactPlayer from 'react-player';
-import LessonResourcesNav from './LessonResourcesNav';
+import LessonResourcesNav from './Nav/LessonResourcesNav';
 
 const Lesson = (props) => {
   return (

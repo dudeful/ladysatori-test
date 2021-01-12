@@ -1,5 +1,5 @@
-import ClassLessonsNav from './ClassLessonsNav';
 import ClassModulesNav from './ClassModulesNav';
+import ClassLessonsNav from './ClassLessonsNav';
 
 const VerticalNav = (props) => {
   const activeModule = (module) => {
@@ -20,19 +20,6 @@ const VerticalNav = (props) => {
     props.currentLesson(lesson);
   };
 
-  const lessons = [
-    'lesson_1',
-    'lesson_2',
-    'lesson_3',
-    'lesson_4',
-    'lesson_5',
-    'lesson_6',
-    'lesson_7',
-    'lesson_8',
-    'lesson_9',
-    'lesson_10',
-  ];
-
   return (
     <div className='navbar-expand-md'>
       <div className='collapse navbar-collapse' id='navbarVNavDropdown'>
@@ -49,7 +36,7 @@ const VerticalNav = (props) => {
                     isActive={module.isActive}
                   />
                   <div className={'collapse ' + module.show} id={module.id + 1}>
-                    <ClassLessonsNav activeLesson={activeLesson} lessons={lessons} />
+                    <ClassLessonsNav activeLesson={activeLesson} lessons={props.lessons} />
                   </div>
                 </div>
               );
