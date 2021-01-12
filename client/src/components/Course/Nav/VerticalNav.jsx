@@ -21,27 +21,29 @@ const VerticalNav = (props) => {
   };
 
   return (
-    <div className='navbar-expand-md'>
-      <div className='collapse navbar-collapse' id='navbarVNavDropdown'>
-        <div className='v-navbar'>
-          <hr className='mt-0' />
-          <nav className='nav flex-column' role='tablist'>
-            {props.modules.map((module) => {
-              return (
-                <div key={module.id}>
-                  <ClassModulesNav
-                    module={module.id}
-                    icon={module.icon}
-                    activeModule={activeModule}
-                    isActive={module.isActive}
-                  />
-                  <div className={'collapse ' + module.show} id={module.id + 1}>
-                    <ClassLessonsNav activeLesson={activeLesson} lessons={props.lessons} />
+    <div className='class_room_nav'>
+      <div className='navbar-expand-md'>
+        <div className='collapse navbar-collapse' id='navbarVNavDropdown'>
+          <div className='v-navbar'>
+            <hr className='mt-0' />
+            <nav className='nav flex-column' role='tablist'>
+              {props.modules.map((module) => {
+                return (
+                  <div key={module.id}>
+                    <ClassModulesNav
+                      module={module.id}
+                      icon={module.icon}
+                      activeModule={activeModule}
+                      isActive={module.isActive}
+                    />
+                    <div className={'collapse ' + module.show} id={module.id + 1}>
+                      <ClassLessonsNav activeLesson={activeLesson} lessons={props.lessons} />
+                    </div>
                   </div>
-                </div>
-              );
-            })}
-          </nav>
+                );
+              })}
+            </nav>
+          </div>
         </div>
       </div>
     </div>

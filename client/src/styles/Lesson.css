@@ -66,5 +66,23 @@
 }
 
 .lesson_resources .tab-content {
-  padding: 30px 60px;
+  padding: 30px 50px;
+}
+
+@media only screen and (max-width: 575px) {
+  .lesson_resources {
+    padding: 30px 10px;
+  }
+
+  .lesson_resources .nav-link {
+    text-decoration: none;
+    color: #373a409a;
+    font-weight: 600;
+    font-size: 14px;
+    padding: 5px 10px;
+  }
+
+  .lesson_resources .tab-content {
+    padding: 30px 15px 60px;
+  }
 }

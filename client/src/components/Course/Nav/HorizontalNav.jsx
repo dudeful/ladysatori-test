@@ -89,18 +89,18 @@ const HorizontalNav = () => {
               </a>
 
               <div className='dropdown-menu dropdown-menu-right' aria-labelledby='dropdownMenuLink'>
-                <a className='dropdown-item' href='#0'>
+                <Link to={'/user-profile'} className='dropdown-item'>
                   Perfil
-                </a>
-                <a className='dropdown-item' href='#0'>
+                </Link>
+                <Link to={'/class-room'} className='dropdown-item'>
                   Curso Completo
-                </a>
-                <a className='dropdown-item' href='#0'>
+                </Link>
+                <Link to={'/live-classes'} className='dropdown-item'>
                   Aulas ao Vivo
-                </a>
-                <a className='dropdown-item' href='#0'>
+                </Link>
+                <Link to={'/master-classes'} className='dropdown-item'>
                   Master Classes
-                </a>
+                </Link>
                 <hr className='mb-1' />
                 <a onClick={() => logout()} className='dropdown-item text-center text-danger p-0' href='#0'>
                   sair

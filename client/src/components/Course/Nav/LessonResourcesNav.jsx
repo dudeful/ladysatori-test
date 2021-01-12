@@ -1,10 +1,10 @@
 const LessonResourcesNav = (props) => {
   return (
     <div>
-      <ul class='nav nav-tabs' id='myTab' role='tablist'>
-        <li class='nav-item' role='presentation'>
+      <ul className='nav nav-tabs' id='myTab' role='tablist'>
+        <li className='nav-item' role='presentation'>
           <a
-            class='nav-link active'
+            className='nav-link active'
             id='briefing-tab'
             data-toggle='tab'
             href='#briefing'
@@ -15,9 +15,9 @@ const LessonResourcesNav = (props) => {
             Briefing
           </a>
         </li>
-        <li class='nav-item' role='presentation'>
+        <li className='nav-item' role='presentation'>
           <a
-            class='nav-link'
+            className='nav-link'
             id='questions-tab'
             data-toggle='tab'
             href='#questions'
@@ -28,9 +28,9 @@ const LessonResourcesNav = (props) => {
             Q&amp;A
           </a>
         </li>
-        <li class='nav-item' role='presentation'>
+        <li className='nav-item' role='presentation'>
           <a
-            class='nav-link'
+            className='nav-link'
             id='complements-tab'
             data-toggle='tab'
             href='#complements'
@@ -41,9 +41,9 @@ const LessonResourcesNav = (props) => {
             Complementos
           </a>
         </li>
-        <li class='nav-item' role='presentation'>
+        <li className='nav-item' role='presentation'>
           <a
-            class='nav-link'
+            className='nav-link'
             id='about-tab'
             data-toggle='tab'
             href='#about'
@@ -55,30 +55,30 @@ const LessonResourcesNav = (props) => {
           </a>
         </li>
       </ul>
-      <div class='tab-content' id='myTabContent'>
-        <div class='tab-pane fade show active' id='briefing' role='tabpanel' aria-labelledby='briefing-tab'>
+      <div className='tab-content' id='myTabContent'>
+        <div className='tab-pane fade show active' id='briefing' role='tabpanel' aria-labelledby='briefing-tab'>
           {props.resources.briefing}
         </div>
-        <div class='tab-pane fade' id='questions' role='tabpanel' aria-labelledby='questions-tab'>
+        <div className='tab-pane fade' id='questions' role='tabpanel' aria-labelledby='questions-tab'>
           {props.resources.questions.map((question) => {
             return (
-              <div className='lesson_resources_questions'>
+              <div key={question.id} className='lesson_resources_questions'>
                 <div className='lesson_resources_question'>{question.question}</div>
                 <div className='lesson_resources_answer'>{question.answer}</div>
               </div>
             );
           })}
         </div>
-        <div class='tab-pane fade' id='complements' role='tabpanel' aria-labelledby='complements-tab'>
+        <div className='tab-pane fade' id='complements' role='tabpanel' aria-labelledby='complements-tab'>
           {props.resources.complements.map((complement) => {
             return (
-              <div className='lesson_resources_complement'>
+              <div key={complement} className='lesson_resources_complement'>
                 <a href='#0'>{complement}</a>
               </div>
             );
           })}
         </div>
-        <div class='tab-pane fade' id='about' role='tabpanel' aria-labelledby='about-tab'>
+        <div className='tab-pane fade' id='about' role='tabpanel' aria-labelledby='about-tab'>
           <div className='lesson_resources_about'>{props.resources.about}</div>
         </div>
       </div>

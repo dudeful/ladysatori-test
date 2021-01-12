@@ -1,11 +1,6 @@
 .yoga_classes {
-  margin: 0;
-  padding: 5% 1.5%;
-}
-@media only screen and (max-width: 575px) {
-  .yoga_classes {
-    padding: 5% 0;
-  }
+  margin: 3rem 0 8rem;
+  padding: 0 1.5%;
 }
 
 .yoga_classes .card {
@@ -18,38 +13,57 @@
   transition: all 1s ease;
 }
 
-.yoga_classes .complete_course .card {
-  background-color: #faf3dd21;
-}
-
-.yoga_classes .live_classes .card {
-  background-color: #c8d5b91f;
-}
-
-.yoga_classes .master_classes .card {
-  background-color: #faf3dd21;
-}
-
 .yoga_classes .card:hover {
-  box-shadow: 0 0 15px 0px #373a409a;
+  box-shadow: 0 0 15px 0px #373a4060;
   clip-path: inset(0px -20px 0px -20px);
 
   padding: 10px;
   min-height: 77vh;
   color: black;
-  border-left: solid 1.5px #373a409a;
-  border-right: solid 1.5px #373a409a;
+  border-left: solid 1.5px #373a4060;
+  border-right: solid 1.5px #373a4060;
   background-color: rgba(255, 255, 255, 0.4);
   z-index: 1;
 }
+
 @media only screen and (max-width: 575px) {
+  .yoga_classes {
+    padding: 2% 0;
+  }
   .yoga_classes .card {
+    background-color: rgba(255, 255, 255, 0.65);
     padding: 20px 0;
   }
   .yoga_classes .card:hover {
     padding: 60px 0;
     border-left: none;
     border-right: none;
+  }
+  .yoga_classes .live_classes {
+    border-top: solid 1.5px #373a409a;
+    border-bottom: solid 1.5px #373a409a;
+  }
+
+  .yoga_classes .complete_course {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-image: url('https://media.giphy.com/media/H3SYd8rWzFXQrAWLNc/giphy.gif');
+  }
+
+  .yoga_classes .live_classes {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-image: url('https://media.giphy.com/media/3oKIPavRPgJYaNI97W/giphy.gif');
+  }
+
+  .yoga_classes .master_classes {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-image: url('https://media.giphy.com/media/dyoW56xY2r6z1ARtT6/giphy.gif');
+    box-shadow: 0px 5px 10px 0px rgb(55, 58, 64, 0.25);
   }
 }
 
@@ -73,29 +87,6 @@
   background-size: cover;
   background-image: url('https://media.giphy.com/media/dyoW56xY2r6z1ARtT6/giphy.gif');
 }
-
-/* @media only screen and (max-width: 575px) {
-  .yoga_classes .complete_course {
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-image: url('https://media.giphy.com/media/H3SYd8rWzFXQrAWLNc/giphy.gif');
-  }
-
-  .yoga_classes .live_classes {
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-image: url('https://media.giphy.com/media/3oKIPavRPgJYaNI97W/giphy.gif');
-  }
-
-  .yoga_classes .master_classes {
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-image: url('https://media.giphy.com/media/dyoW56xY2r6z1ARtT6/giphy.gif');
-  }
-} */
 
 .yoga_classes .card-title {
   text-align: center;

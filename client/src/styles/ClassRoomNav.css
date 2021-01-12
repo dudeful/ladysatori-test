@@ -85,7 +85,7 @@
 }
 
 @media (max-width: 767px) {
-  .navbar-collapse {
+  .class_room_nav .navbar-collapse {
     background-color: white;
     position: fixed;
     left: 0;
@@ -96,7 +96,7 @@
     z-index: 101;
   }
 
-  .navbar-collapse.collapsing {
+  .class_room_nav .navbar-collapse.collapsing {
     left: -100%;
     transition: left 0ms ease;
   }
