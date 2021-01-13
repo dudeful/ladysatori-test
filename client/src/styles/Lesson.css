@@ -69,6 +69,46 @@
   padding: 30px 50px;
 }
 
+.lesson_resources_questions {
+  margin: 10px 0;
+  /* background-color: rgba(0, 128, 128, 0.151); */
+  border-radius: 3px;
+  padding: 5px 10px;
+}
+
+.lesson_resources_picture .fas-icon {
+  font-size: 21px;
+  color: #373a4065;
+  text-align: center;
+  margin-top: 10px;
+}
+
+.answered .lesson_resources_picture .fas-icon {
+  color: #ec6565cb;
+}
+
+.lesson_resources_picture img {
+  display: block;
+  margin: auto;
+  height: 45px;
+  max-width: 45px;
+  border-radius: 50%;
+}
+
+.lesson_resources_question_title {
+  font-weight: 700;
+  margin-bottom: 5px;
+  color: #373a40;
+}
+
+.lesson_resources_question_body {
+  color: #373a40f1;
+}
+
+.lesson_resources_details {
+  font-size: 14px;
+}
+
 @media only screen and (max-width: 575px) {
   .lesson_resources {
     padding: 30px 10px;
