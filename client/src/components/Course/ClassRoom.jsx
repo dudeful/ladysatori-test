@@ -15,6 +15,7 @@ const modules = [
   { id: 'module_3', icon: '/images/ClassRoom/hideNavArrow.png' },
   { id: 'module_4', icon: '/images/ClassRoom/hideNavArrow.png' },
   { id: 'module_5', icon: '/images/ClassRoom/hideNavArrow.png' },
+  { id: 'module_6', icon: '/images/ClassRoom/hideNavArrow.png' },
   { id: 'conclusão', icon: '/images/ClassRoom/hideNavArrow.png' },
 ];
 
@@ -53,8 +54,7 @@ const youtubeURL = [
 ];
 
 const lessonResources = {
-  briefing:
-    'Ea fugiat deserunt occaecat aute ipsum non. Amet aliquip ea cupidatat ut magna exercitation sint elit minim non ex nisi amet dolore. Veniam ipsum ullamco cupidatat consectetur nostrud voluptate incididunt tempor deserunt deserunt ea. Veniam nulla duis aliquip laborum incididunt in. Veniam aute amet dolor dolor esse esse ullamco elit. Ipsum non mollit commodo nisi exercitation mollit fugiat. Laboris cupidatat ea Lorem aliqua dolore. Veniam nulla anim aute eiusmod tempor ex. Quis ad magna do officia quis aliquip ex incididunt reprehenderit officia voluptate ut. Elit laboris officia aliqua cillum duis. Velit ex aute sint mollit quis adipisicing sunt reprehenderit. Eu elit irure dolor in ut fugiat aliquip dolore. Eiusmod exercitation consequat ad id adipisicing nostrud laboris id veniam culpa. Velit officia nostrud anim id qui esse quis aliquip. Amet ipsum minim et est. In aliqua et occaecat nostrud occaecat veniam officia pariatur. Deserunt quis cillum aliqua labore pariatur elit sint irure. Dolore deserunt in quis nulla voluptate. Ullamco minim anim quis laboris sit sint laborum. Nulla nostrud ea ipsum occaecat esse pariatur dolore irure sint culpa est anim. Ipsum nostrud consequat culpa nulla labore ipsum aute. Nostrud sunt laboris amet proident incididunt fugiat irure consequat reprehenderit ipsum commodo aute. In id quis occaecat labore ex est duis et.',
+  briefing: 'https://d1or0rfi63vb4e.cloudfront.net/resources/module_1/lesson_1/briefing',
   questions: [
     {
       id: '62512e2b-e858-48f9-817b-f8fb015ca7e8',
@@ -85,7 +85,7 @@ const lessonResources = {
         body:
           'Officia dolore magna deserunt ipsum eu. Reprehenderit laboris aliquip veniam esse sint ullamco amet proident aliquip adipisicing esse incididunt qui sint.',
       },
-      answer: {
+      _answer: {
         picture: 'https://jivamuktiyoga.com/wp-content/uploads/2019/04/Sample-Photo-1-300x300.jpg',
         body:
           'Aute consequat consectetur eiusmod cillum incididunt cillum. Amet ut commodo enim labore adipisicing nisi ad magna mollit ut duis sit dolor cupidatat. Irure occaecat proident sint exercitation culpa fugiat. Irure officia laboris non nisi pariatur laborum deserunt ipsum laboris aute aliquip esse.',
@@ -214,7 +214,18 @@ const lessonResources = {
       },
     },
   ],
-  complements: ['link_1', 'link_2', 'link_3', 'link_4', 'link_5', 'link_6'],
+  complements: [
+    { title: 'Documentário "The Architecture of Peace"', link: 'https://youtu.be/SyH5Rj-n0gM' },
+    {
+      title: 'Tapete TPE para Yoga',
+      link:
+        'https://www.decathlon.com.br/tapete-yoga-5mm--tpe-/p?aSku=Cor:azul-escuro&utm_source=google&utm_medium=cpc-search&gclid=Cj0KCQiArvX_BRCyARIsAKsnTxPnX5a2KTyhhPZexIHX6tYco-jXJ1TAXwkZHqTjQD9y8zLmAVdZbAAaAm8UEALw_wcB',
+    },
+    { title: 'Centros de Meditação', link: 'http://www.cebb.org.br/centros-no-brasil/' },
+    { title: 'Grupo WhatsApp', link: 'https://wa.me/5521995165858' },
+    { title: 'Grupo Facebook', link: 'https://www.facebook.com/groups/343785945649728' },
+    { title: 'Agenda de Eventos Presenciais', link: 'https://ma.dhamma.org/' },
+  ],
   about:
     'Ipsum amet mollit occaecat ex deserunt eu aute laborum culpa voluptate do. Ut eiusmod mollit consequat elit cillum nostrud. Mollit consequat dolore aliquip et cillum et ea dolor in consectetur. Eu occaecat cupidatat eu qui eu adipisicing tempor id dolore. Do laboris id culpa irure fugiat aliquip ullamco dolore id. Nisi amet reprehenderit laboris duis laboris pariatur consequat. Mollit do est et aute cupidatat veniam eu eiusmod quis reprehenderit aliquip eiusmod proident. Fugiat aliqua nisi duis cillum id consectetur veniam mollit cupidatat minim adipisicing voluptate nisi commodo. Occaecat et id sit ea cupidatat ad veniam nostrud. Aute amet et aliqua eu culpa id cupidatat tempor excepteur cillum qui officia id.',
 };

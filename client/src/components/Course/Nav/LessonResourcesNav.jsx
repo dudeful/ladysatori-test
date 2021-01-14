@@ -34,18 +34,42 @@ const LessonResourcesNav = (props) => {
             Q&amp;A
           </a>
         </li>
-        <li className='nav-item' role='presentation'>
+        <li className='nav-item dropdown' role='presentation'>
           <a
-            className='nav-link'
-            id='complements-tab'
-            data-toggle='tab'
-            href='#complements'
-            role='tab'
-            aria-controls='complements'
-            aria-selected='false'
+            className='nav-link dropdown-toggle'
+            data-toggle='dropdown'
+            href='#0'
+            role='button'
+            aria-haspopup='true'
+            aria-expanded='false'
           >
             Complementos
           </a>
+          <div className='dropdown-menu'>
+            <a
+              className='dropdown-item'
+              id='complements-tab1'
+              data-toggle='tab'
+              href='#complements1'
+              role='tab'
+              aria-controls='complements1'
+              aria-selected='false'
+            >
+              desta aula
+            </a>
+            <div className='dropdown-divider'></div>
+            <a
+              className='dropdown-item'
+              id='complements-tab2'
+              data-toggle='tab'
+              href='#complements2'
+              role='tab'
+              aria-controls='complements2'
+              aria-selected='false'
+            >
+              todos
+            </a>
+          </div>
         </li>
         <li className='nav-item' role='presentation'>
           <a
@@ -119,11 +143,26 @@ const LessonResourcesNav = (props) => {
             );
           })}
         </div>
-        <div className='tab-pane fade' id='complements' role='tabpanel' aria-labelledby='complements-tab'>
+        <div className='tab-pane fade' id='complements1' role='tabpanel' aria-labelledby='complements-tab1'>
+          {props.resources.complements.slice(0, 2).map((complement) => {
+            return (
+              <div key={complement.link} className='lesson_resources_complement'>
+                <a className='text-decoration-none text-info' href={complement.link} target='_blank' rel='noreferrer'>
+                  <i className='fas fa-folder-open mr-2 text-muted'></i>
+                  {complement.title}
+                </a>
+              </div>
+            );
+          })}
+        </div>
+        <div className='tab-pane fade' id='complements2' role='tabpanel' aria-labelledby='complements-tab2'>
           {props.resources.complements.map((complement) => {
             return (
-              <div key={complement} className='lesson_resources_complement'>
-                <a href='#0'>{complement}</a>
+              <div key={complement.link} className='lesson_resources_complement'>
+                <a className='text-decoration-none text-info' href={complement.link} target='_blank' rel='noreferrer'>
+                  <i className='fas fa-folder-open mr-2 text-muted'></i>
+                  {complement.title}
+                </a>
               </div>
             );
           })}

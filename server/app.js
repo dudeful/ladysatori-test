@@ -29,6 +29,10 @@ app.use('/auth', require('./auth'));
 app.use('/blog', require('./admin/blog'));
 app.use('/admin/reset', require('./admin/passwordReset'));
 app.use('/admin/auth', require('./admin/auth'));
+
+app.use('/course/resources', require('./course/resources'));
+app.use('/course/videos', require('./course/videos'));
+
 app.use(
   '/course',
   cors({ origin: ['http://localhost:3000', 'https://master.d3kw4pqdide09j.amplifyapp.com'], credentials: true }),

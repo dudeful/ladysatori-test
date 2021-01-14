@@ -59,6 +59,15 @@
   padding: 30px 25px;
 }
 
+.lesson_resources_complement {
+  background-color: rgba(103, 102, 129, 0.05);
+  margin-bottom: 7px;
+  padding: 10px 5px;
+  border-radius: 2px;
+  font-size: 15px;
+  font-weight: 600;
+}
+
 .lesson_resources .nav-link {
   text-decoration: none;
   color: #373a409a;
@@ -71,7 +80,6 @@
 
 .lesson_resources_questions {
   margin: 10px 0;
-  /* background-color: rgba(0, 128, 128, 0.151); */
   border-radius: 3px;
   padding: 5px 10px;
 }
@@ -118,11 +126,45 @@
     text-decoration: none;
     color: #373a409a;
     font-weight: 600;
-    font-size: 14px;
     padding: 5px 10px;
   }
 
   .lesson_resources .tab-content {
     padding: 30px 15px 60px;
   }
+}
+@media only screen and (max-width: 425px) {
+  .lesson_resources .nav-link {
+    font-size: 15px;
+  }
+}
+@media only screen and (max-width: 405px) {
+  .lesson_resources .nav-link {
+    font-size: 14px;
+  }
+}
+@media only screen and (max-width: 390px) {
+  .lesson_resources .nav-link {
+    font-size: 13px;
+  }
+}
+@media only screen and (max-width: 366px) {
+  .lesson_resources .nav-link {
+    font-size: 12px;
+  }
+}
+@media only screen and (max-width: 346px) {
+  .lesson_resources .nav-link {
+    font-size: 11px;
+  }
+}
+@media only screen and (max-width: 326px) {
+  .lesson_resources .nav-link {
+    font-size: 10px;
+  }
+}
+
+.lesson_resources .dropdown-menu.show {
+  min-width: 100%;
+  box-shadow: 0px 7px 10px 0px rgba(128, 128, 128, 0.15);
 }
