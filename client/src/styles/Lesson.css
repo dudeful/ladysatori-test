@@ -62,8 +62,8 @@
 .lesson_resources_complement {
   background-color: rgba(103, 102, 129, 0.05);
   margin-bottom: 7px;
-  padding: 10px 5px;
-  border-radius: 2px;
+  padding: 10px;
+  border-radius: 3px;
   font-size: 15px;
   font-weight: 600;
 }

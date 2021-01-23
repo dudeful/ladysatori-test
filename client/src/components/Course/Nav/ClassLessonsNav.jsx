@@ -1,19 +1,17 @@
 const ClassLessonsNav = (props) => {
-  const random = Math.random();
-
   return (
     <div>
       <nav className='navLesson nav flex-column'>
         {props.lessons.map((lesson) => {
           return (
             <a
-              onClick={() => props.activeLesson(lesson + random)}
-              key={lesson}
-              id={lesson + random}
-              className={'nav-link lesson ' + props.isActive}
-              href='#0'
+              onClick={() => props.activeLesson({ id: lesson.moduleID + '_' + lesson.id, prefix: lesson.prefix })}
+              key={lesson.moduleID + '_' + lesson.id}
+              id={lesson.moduleID + '_' + lesson.id}
+              className={'nav-link lesson'}
+              href={'#' + lesson.name.toLowerCase()}
             >
-              {lesson}
+              {lesson.id.slice(-1) + '. ' + lesson.name.replaceAll('_', ' ')}
             </a>
           );
         })}

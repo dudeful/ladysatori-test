@@ -33,7 +33,7 @@ router.route('/questions').get((req, res) => {
 });
 
 router.route('/complements').get((req, res) => {
-  s3.listObjectsV2({ Bucket: 'lady-satori-course', Prefix: 'resources/complements/' }, (err, data) => {
+  s3.listObjectsV2({ Bucket: 'lady-satori-course', Prefix: req.body.prefix }, (err, data) => {
     if (err) {
       console.log(err, err.stack);
       res.json({ err });
