@@ -70,6 +70,33 @@ const ClassRoom = () => {
       .catch((err) => console.log(err));
   }, []);
 
+  const fetchQuestions = (prefix) => {
+    axios.get('http://localhost:5000/course/resources/questions', { params: { prefix: prefix } }).then((res) => {
+      if (res.data.questions[0]) {
+        let questions = res.data.questions.map(async (question) => {
+          const res = await axios.get(question);
+          return res.data;
+        });
+
+        Promise.all(questions).then((question) => {
+          setResources((prev) => {
+            return {
+              ...prev,
+              questions: question,
+            };
+          });
+        });
+      } else {
+        setResources((prev) => {
+          return {
+            ...prev,
+            questions: '',
+          };
+        });
+      }
+    });
+  };
+
   const currentLesson = (prefix) => {
     axios
       .get('http://localhost:5000/course/videos/get-video-url', { params: { prefix: prefix } })
@@ -84,6 +111,7 @@ const ClassRoom = () => {
               return {
                 ...prev,
                 briefing: res.data,
+                prefix: prefix,
               };
             });
           })
@@ -98,17 +126,7 @@ const ClassRoom = () => {
             });
           })
           .then(() => {
-            let questions = helper().questions;
-            questions = questions.filter(
-              (question) => question.module === prefix.split('/')[0] && question.lesson === prefix.split('/')[2]
-            );
-
-            setResources((prev) => {
-              return {
-                ...prev,
-                questions: questions,
-              };
-            });
+            fetchQuestions(prefix);
           })
           .catch((err) => console.log(err));
       })
@@ -122,7 +140,7 @@ const ClassRoom = () => {
       <div>
         <ClassRoomNav lessons={lessons} currentLesson={currentLesson} modules={modules} />
         <div className='course_body'>
-          <Lesson lessonURL={lessonURL} resources={resources} />
+          <Lesson lessonURL={lessonURL} resources={resources} fetchQuestions={fetchQuestions} />
           <div className='text-center'></div>
         </div>
       </div>

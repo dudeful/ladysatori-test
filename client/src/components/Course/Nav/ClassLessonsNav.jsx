@@ -10,6 +10,12 @@ const ClassLessonsNav = (props) => {
               id={lesson.moduleID + '_' + lesson.id}
               className={'nav-link lesson'}
               href={'#' + lesson.name.toLowerCase()}
+              data-toggle='collapse'
+              data-target='#navbarVNavDropdown'
+              aria-controls='navbarVNavDropdown'
+              aria-expanded='false'
+              role='tab'
+              aria-selected='true'
             >
               {lesson.id.slice(-1) + '. ' + lesson.name.replaceAll('_', ' ')}
             </a>

@@ -28,6 +28,7 @@ router.route('/login').post((req, res) => {
           fName: user.Item.fName.S,
           lName: user.Item.lName.S,
           email: user.Item.email.S,
+          id: user.Item.id.S,
         };
 
         // Encrypt
@@ -52,9 +53,9 @@ router.route('/login').post((req, res) => {
 router.route('/isLoggedIn').get(verifyAdminToken, (req, res) => {
   const decoded = req.user.payload;
 
-  if (decoded.googleID) {
+  if (decoded.authMethod === 'Google') {
     ddb
-      .getUser({ key: { googleID: { S: decoded.googleID } }, table: 'users_admin_google' })
+      .getUser({ key: { googleID: { S: decoded.id } }, table: 'users_admin_google' })
       .then((user) => {
         if (!user.Item) {
           res.json({ isLoggedIn: false });
@@ -98,7 +99,7 @@ router.route('/google/redirect').get(
       .then((user) => {
         const payload = {
           authMethod: 'Google',
-          googleID: user.Item.googleID.S,
+          id: user.Item.googleID.S,
           fName: user.Item.fName.S,
           lName: user.Item.lName.S,
           email: user.Item.email.S,

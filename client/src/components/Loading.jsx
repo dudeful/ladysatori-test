@@ -1,11 +1,7 @@
 const Loading = () => {
   return (
-    <div>
-      <img
-        src="/images/Infinity-2s-200px.svg"
-        className="loading-infinity"
-        alt="..."
-      />
+    <div className='pt-5'>
+      <img src='/images/Infinity-2s-200px.svg' className='loading-infinity d-block m-auto' alt='...' />
     </div>
   );
 };

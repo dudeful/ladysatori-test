@@ -27,7 +27,12 @@ const Lesson = (props) => {
         />
       </div>
       <div className='lesson_resources'>
-        <LessonResourcesNav intro={props.lessonURL.intro} active={props.lessonURL.active} resources={props.resources} />
+        <LessonResourcesNav
+          intro={props.lessonURL.intro}
+          active={props.lessonURL.active}
+          resources={props.resources}
+          fetchQuestions={props.fetchQuestions}
+        />
       </div>
     </div>
   );

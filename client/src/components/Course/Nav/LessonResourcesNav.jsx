@@ -5,6 +5,7 @@ import DOMPurify from 'dompurify';
 import draftToHtml from 'draftjs-to-html';
 import Tippy from '@tippyjs/react';
 import date from './DateCalculator';
+import QuestionInput from './QuestionInput';
 
 DOMPurify.addHook('afterSanitizeAttributes', function (node) {
   // set all elements owning target to target=_blank
@@ -15,6 +16,39 @@ DOMPurify.addHook('afterSanitizeAttributes', function (node) {
 });
 
 const LessonResourcesNav = (props) => {
+  const colors = [
+    { bg: 'bg-dark', text: 'text-light' },
+    { bg: 'bg-dark', text: 'text-secondary' },
+    { bg: 'bg-dark', text: 'text-danger' },
+    { bg: 'bg-dark', text: 'text-warning' },
+    { bg: 'bg-success', text: 'text-light' },
+    { bg: 'bg-success', text: 'text-dark' },
+    { bg: 'bg-success', text: 'text-danger' },
+    { bg: 'bg-secondary', text: 'text-dark' },
+    { bg: 'bg-secondary', text: 'text-danger' },
+    { bg: 'bg-secondary', text: 'text-warning' },
+    { bg: 'bg-secondary', text: 'text-info' },
+    { bg: 'bg-info', text: 'text-light' },
+    { bg: 'bg-info', text: 'text-dark' },
+    { bg: 'bg-info', text: 'text-danger' },
+    { bg: 'bg-info', text: 'text-warning' },
+    { bg: 'bg-primary', text: 'text-light' },
+    { bg: 'bg-primary', text: 'text-dark' },
+    { bg: 'bg-primary', text: 'text-danger' },
+    { bg: 'bg-danger', text: 'text-light' },
+    { bg: 'bg-danger', text: 'text-dark' },
+    { bg: 'bg-danger', text: 'text-warning' },
+    { bg: 'bg-warning', text: 'text-light' },
+    { bg: 'bg-warning', text: 'text-dark' },
+    { bg: 'bg-warning', text: 'text-danger' },
+    { bg: 'bg-light', text: 'text-info' },
+    { bg: 'bg-light', text: 'text-success' },
+    { bg: 'bg-light', text: 'text-dark' },
+    { bg: 'bg-light', text: 'text-primary' },
+    { bg: 'bg-light', text: 'text-danger' },
+    { bg: 'bg-light', text: 'text-warning' },
+  ];
+
   return (
     <div>
       <ul className='nav nav-tabs' id='myTab' role='tablist'>
@@ -113,14 +147,21 @@ const LessonResourcesNav = (props) => {
         <div className='tab-pane fade' id='questions' role='tabpanel' aria-labelledby='questions-tab'>
           {props.resources.questions && !props.intro ? (
             props.resources.questions.map((question) => {
+              const color = colors[Math.floor(Math.random() * 29)];
               return (
                 <div
-                  key={question.id}
-                  id={question.id}
+                  key={question.question_id}
+                  id={question.question_id}
                   className={'lesson_resources_questions row m-0 p-0 ' + (question.answer ? 'answered' : '')}
                 >
                   <div className='lesson_resources_picture col-sm-1 col-2 p-0'>
-                    <img src={question.user_picture} alt='...' />
+                    {question.picture ? (
+                      <img src={question.picture} alt='...' />
+                    ) : (
+                      <span className={'lesson_resources_userinitials font-weight-bold ' + color.bg + ' ' + color.text}>
+                        {question.fName.slice(0, 1).toUpperCase() + question.lName.slice(0, 1).toUpperCase()}
+                      </span>
+                    )}
                     <Tippy
                       disabled={question.answer ? false : true}
                       theme='light'
@@ -142,12 +183,12 @@ const LessonResourcesNav = (props) => {
                       </div>
                     </Tippy>
                   </div>
-                  <div className='col-sm-11 col-10 ml-auto pl-2'>
+                  <div className='col-sm-11 col-10 ml-auto pl-2 pr-2'>
                     <div className='lesson_resources_question_title'>{question.question.title}</div>
                     <div className='lesson_resources_question_body'>{question.question.body}</div>
                     <br />
                     <div className='lesson_resources_details'>
-                      <span className='text-info'>{question.user_name} &#xB7; </span>
+                      <span className='text-info'>{question.fName + ' ' + question.lName} &#xB7; </span>
                       <span className='text-muted'>{date(question.date)}</span>
                     </div>
                     <hr />
@@ -156,8 +197,9 @@ const LessonResourcesNav = (props) => {
               );
             })
           ) : (
-            <i className='text-info'>Seja o primeiro a perguntar &#x1F920;</i>
+            <i className='text-info'>Seja o primeiro a perguntar</i>
           )}
+          <QuestionInput prefix={props.resources.prefix} fetchQuestions={props.fetchQuestions} />
         </div>
         <div className='tab-pane fade' id='complements1' role='tabpanel' aria-labelledby='complements-tab1'>
           {props.resources.complements ? (
@@ -191,8 +233,13 @@ const LessonResourcesNav = (props) => {
                     >
                       <div className='lesson_resources_complement'>
                         <i className='fas fa-folder-open mr-2 text-muted'></i>
-                        <span className='text-dark'>{'Módulo ' + complements.key.split('/')[2].slice(-1)} - </span>
-                        <span className='text-muted'>{complements.key.split('/')[5].replaceAll('_', ' ')}:</span>{' '}
+                        <span className='text-dark h6'>{'Módulo ' + complements.key.split('/')[2].slice(-1)} - </span>
+                        <span className='text-muted'>
+                          {complements.key.split('/')[4].slice(-1) +
+                            '. ' +
+                            complements.key.split('/')[5].replaceAll('_', ' ')}
+                          :
+                        </span>{' '}
                         {complement.title}
                       </div>
                     </a>
