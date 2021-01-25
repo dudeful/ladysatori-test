@@ -6,6 +6,14 @@ import draftToHtml from 'draftjs-to-html';
 import Tippy from '@tippyjs/react';
 import date from './DateCalculator';
 
+DOMPurify.addHook('afterSanitizeAttributes', function (node) {
+  // set all elements owning target to target=_blank
+  if ('target' in node) {
+    node.setAttribute('target', '_blank');
+    node.setAttribute('rel', 'noopener');
+  }
+});
+
 const LessonResourcesNav = (props) => {
   return (
     <div>
