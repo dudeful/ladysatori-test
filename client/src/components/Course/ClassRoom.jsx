@@ -21,7 +21,7 @@ const ClassRoom = () => {
 
   useEffect(() => {
     axios
-      .get('http://localhost:5000/course/videos/get-keys')
+      .get('https://lf2j6ejxq7.execute-api.sa-east-1.amazonaws.com/test/course/videos/get-keys')
       .then((res) => {
         let modulesKeys = res.data.keys.map((key) => {
           return { id: key.prefix.split('/')[0], name: key.prefix.split('/')[1], prefix: key.prefix };
@@ -71,35 +71,41 @@ const ClassRoom = () => {
   }, []);
 
   const fetchQuestions = (prefix) => {
-    axios.get('http://localhost:5000/course/resources/questions', { params: { prefix: prefix } }).then((res) => {
-      if (res.data.questions[0]) {
-        let questions = res.data.questions.map(async (question) => {
-          const res = await axios.get(question);
-          return res.data;
-        });
+    axios
+      .get('https://lf2j6ejxq7.execute-api.sa-east-1.amazonaws.com/course/resources/questions', {
+        params: { prefix: prefix },
+      })
+      .then((res) => {
+        if (res.data.questions[0]) {
+          let questions = res.data.questions.map(async (question) => {
+            const res = await axios.get(question);
+            return res.data;
+          });
 
-        Promise.all(questions).then((question) => {
+          Promise.all(questions).then((question) => {
+            setResources((prev) => {
+              return {
+                ...prev,
+                questions: question,
+              };
+            });
+          });
+        } else {
           setResources((prev) => {
             return {
               ...prev,
-              questions: question,
+              questions: '',
             };
           });
-        });
-      } else {
-        setResources((prev) => {
-          return {
-            ...prev,
-            questions: '',
-          };
-        });
-      }
-    });
+        }
+      });
   };
 
   const currentLesson = (prefix) => {
     axios
-      .get('http://localhost:5000/course/videos/get-video-url', { params: { prefix: prefix } })
+      .get('https://lf2j6ejxq7.execute-api.sa-east-1.amazonaws.com/course/videos/get-video-url', {
+        params: { prefix: prefix },
+      })
       .then((res) => {
         setLessonURL(res.data.urls);
       })
