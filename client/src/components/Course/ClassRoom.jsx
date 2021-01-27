@@ -72,7 +72,7 @@ const ClassRoom = () => {
 
   const fetchQuestions = (prefix) => {
     axios
-      .get('https://lf2j6ejxq7.execute-api.sa-east-1.amazonaws.com/course/resources/questions', {
+      .get('https://lf2j6ejxq7.execute-api.sa-east-1.amazonaws.com/test/course/resources/questions', {
         params: { prefix: prefix },
       })
       .then((res) => {
@@ -103,7 +103,7 @@ const ClassRoom = () => {
 
   const currentLesson = (prefix) => {
     axios
-      .get('https://lf2j6ejxq7.execute-api.sa-east-1.amazonaws.com/course/videos/get-video-url', {
+      .get('https://lf2j6ejxq7.execute-api.sa-east-1.amazonaws.com/test/course/videos/get-video-url', {
         params: { prefix: prefix },
       })
       .then((res) => {

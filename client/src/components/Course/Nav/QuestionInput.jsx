@@ -27,7 +27,7 @@ const QuestionInput = (props) => {
     } else {
       axios
         .post(
-          'https://lf2j6ejxq7.execute-api.sa-east-1.amazonaws.com/course/resources/submit-question',
+          'https://lf2j6ejxq7.execute-api.sa-east-1.amazonaws.com/test/course/resources/submit-question',
           { question: question, prefix: props.prefix },
           {
             headers: { localToken, sessionToken },
