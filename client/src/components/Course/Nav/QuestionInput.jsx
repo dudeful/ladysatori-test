@@ -17,8 +17,16 @@ const QuestionInput = (props) => {
   };
 
   const submitQuestion = () => {
-    const localToken = localStorage.getItem('auth-token');
-    const sessionToken = sessionStorage.getItem('auth-token');
+    //
+    const authToken = () => {
+      if (localStorage.getItem('auth-token')) {
+        return localStorage.getItem('auth-token');
+      } else if (sessionStorage.getItem('auth-token')) {
+        return sessionStorage.getItem('auth-token');
+      } else {
+        return false;
+      }
+    };
 
     if (!question.title) {
       alert('Você precisa dar um título a sua pergunta');
@@ -28,9 +36,10 @@ const QuestionInput = (props) => {
       axios
         .post(
           'https://lf2j6ejxq7.execute-api.sa-east-1.amazonaws.com/test/course/resources/submit-question',
+          // 'http://localhost:5000/course/resources/submit-question',
           { question: question, prefix: props.prefix },
           {
-            headers: { localToken, sessionToken },
+            headers: { Authorization: authToken() },
           }
         )
         .then((res) => {
